@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | CORE</title>
+    <meta name="description" content="Insights, tips, and strategies for holiday home operators in Dubai.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        corex: {
+                            black: '#000000',
+                            dark: '#0a0a0a',
+                            darker: '#050505',
+                            gray: '#111111',
+                            grayLight: '#1a1a1a',
+                            light: '#ffffff',
+                            muted: '#888888'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+            opacity: 0.6;
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ffffff;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .feature-card {
+            background: #0a0a0a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-4px);
+        }
+        .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .blog-card:hover .blog-image {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden bg-black">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300 bg-black/80 backdrop-blur-md border-b border-white/5" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <img src="https://kimi-web-img.moonshot.cn/img/upload/C%20(2)%20copy.png" alt="CORE" class="h-8 md:h-10 w-auto brightness-0 invert">
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <!-- Solutions Dropdown -->
+                <div class="dropdown relative">
+                    <button class="nav-link text-sm font-medium text-gray-400 hover:text-white flex items-center gap-1">
+                        Solutions
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu absolute top-full left-0 mt-2 w-56 bg-corex-gray border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                        <a href="revenue-management.html" class="block px-4 py-3 text-sm text-gray-400 hover:text-white hover:bg-white/10 transition-colors">Revenue Management</a>
+                        <a href="operations.html" class="block px-4 py-3 text-sm text-gray-400 hover:text-white hover:bg-white/10 transition-colors">Operations</a>
+                    </div>
+                </div>
+                <a href="blog.html" class="nav-link text-sm font-medium text-white">Blog</a>
+                <a href="book-a-call.html" class="bg-white text-black px-6 py-2.5 rounded-full text-sm font-bold hover:bg-gray-200 transition-colors duration-300">Book a call</a>
+            </div>
+
+            <button class="md:hidden text-white" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black border-t border-white/10 absolute w-full">
+            <div class="px-6 py-4 space-y-3">
+                <p class="text-gray-500 text-xs uppercase tracking-wider">Solutions</p>
+                <a href="revenue-management.html" class="block text-gray-400 hover:text-white py-2 pl-4">Revenue Management</a>
+                <a href="operations.html" class="block text-gray-400 hover:text-white py-2 pl-4">Operations</a>
+                <a href="blog.html" class="block text-white py-2 pl-4 border-l-2 border-white">Blog</a>
+                <a href="book-a-call.html" class="block bg-white text-black px-4 py-2 rounded-full font-bold text-center mt-4">Book a call</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[50vh] flex items-center justify-center pt-32 pb-20 overflow-hidden bg-black">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/5 via-transparent to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+            <span class="section-label">Insights</span>
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[0.9] tracking-tight">
+                Blog
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto font-light leading-relaxed">
+                Tips, strategies, and insights for holiday home operators in Dubai.
+            </p>
+        </div>
+    </section>
+
+    <!-- Featured Post -->
+    <section class="py-20 px-6 bg-black">
+        <div class="max-w-6xl mx-auto">
+            <a href="#" class="blog-card block feature-card rounded-3xl overflow-hidden group">
+                <div class="grid md:grid-cols-2">
+                    <div class="h-64 md:h-auto overflow-hidden">
+                        <img src="https://kimi-web-img.moonshot.cn/img/cf.bstatic.com/d0bfeee6e555a530435123d01951d22097b0fd13.jpg" alt="Dubai Apartment" class="blog-image w-full h-full object-cover transition-transform duration-500">
+                    </div>
+                    <div class="p-8 md:p-12 flex flex-col justify-center">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-xs font-medium text-gray-500 uppercase tracking-wider">Featured</span>
+                            <span class="text-gray-700">|</span>
+                            <span class="text-xs text-gray-500">Jan 15, 2026</span>
+                        </div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white mb-4 group-hover:text-gray-300 transition-colors">The Ultimate Guide to Dynamic Pricing for Dubai Holiday Homes</h2>
+                        <p class="text-gray-500 mb-6 leading-relaxed">Learn how to optimize your pricing strategy based on seasonality, local events, and market demand to maximize your revenue year-round.</p>
+                        <span class="text-white font-medium inline-flex items-center gap-2">Read Article <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Blog Grid -->
+    <section class="py-20 px-6 bg-corex-darker">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Blog Post 1 -->
+                <a href="#" class="blog-card feature-card rounded-3xl overflow-hidden group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://kimi-web-img.moonshot.cn/img/cf.bstatic.com/15b794bd3daef7363719d125b9b55d6c3183fc94.jpg" alt="Dubai Marina" class="blog-image w-full h-full object-cover transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-gray-500 mb-2 block">Dec 28, 2025</span>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-gray-300 transition-colors">5 Ways to Increase Your Holiday Home Occupancy Rate</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Discover proven strategies to keep your properties booked throughout the year.</p>
+                    </div>
+                </a>
+
+                <!-- Blog Post 2 -->
+                <a href="#" class="blog-card feature-card rounded-3xl overflow-hidden group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://kimi-web-img.moonshot.cn/img/media.admiddleeast.com/35318bc096143d0c4d6e7cd294867d655cf701fd.jpeg" alt="Palm Jumeirah" class="blog-image w-full h-full object-cover transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-gray-500 mb-2 block">Dec 15, 2025</span>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-gray-300 transition-colors">Understanding Dubai's Peak Seasons: When to Adjust Your Prices</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">A comprehensive breakdown of Dubai's tourism calendar and how to leverage it.</p>
+                    </div>
+                </a>
+
+                <!-- Blog Post 3 -->
+                <a href="#" class="blog-card feature-card rounded-3xl overflow-hidden group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://kimi-web-img.moonshot.cn/img/cf.bstatic.com/a5e2fe1b83d2a8482a89daecbf4a14de3555cbf3.jpg" alt="Downtown Dubai" class="blog-image w-full h-full object-cover transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-gray-500 mb-2 block">Dec 5, 2025</span>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-gray-300 transition-colors">The Importance of Professional Photography for Your Listings</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">How high-quality images can increase your booking rate by up to 40%.</p>
+                    </div>
+                </a>
+
+                <!-- Blog Post 4 -->
+                <a href="#" class="blog-card feature-card rounded-3xl overflow-hidden group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://kimi-web-img.moonshot.cn/img/res.cloudinary.com/bffd072f2c166252b288ef6ea61e12889d24b023" alt="Luxury Interior" class="blog-image w-full h-full object-cover transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-gray-500 mb-2 block">Nov 22, 2025</span>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-gray-300 transition-colors">Guest Communication Best Practices for 5-Star Reviews</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Tips for providing exceptional guest experiences that lead to rave reviews.</p>
+                    </div>
+                </a>
+
+                <!-- Blog Post 5 -->
+                <a href="#" class="blog-card feature-card rounded-3xl overflow-hidden group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://kimi-web-img.moonshot.cn/img/cf.bstatic.com/8d858b14cabd03b1b01207d5caa4acc48e648894.jpg" alt="Dubai Night View" class="blog-image w-full h-full object-cover transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-gray-500 mb-2 block">Nov 10, 2025</span>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-gray-300 transition-colors">Navigating Dubai's Holiday Home Regulations</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Everything you need to know about licenses, permits, and compliance.</p>
+                    </div>
+                </a>
+
+                <!-- Blog Post 6 -->
+                <a href="#" class="blog-card feature-card rounded-3xl overflow-hidden group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://kimi-web-img.moonshot.cn/img/luxhabitat.ae/ff83a3da61cfab047d77224325bdd61ef475e979.jpg" alt="Burj Khalifa View" class="blog-image w-full h-full object-cover transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-gray-500 mb-2 block">Oct 28, 2025</span>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-gray-300 transition-colors">How to Handle Maintenance Issues Like a Pro</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">A guide to preventing and quickly resolving common property issues.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-32 px-6 bg-black">
+        <div class="max-w-4xl mx-auto text-center">
+            <span class="section-label">Stay Updated</span>
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Subscribe to our<br>newsletter</h2>
+            <p class="text-gray-500 text-lg mb-10 max-w-2xl mx-auto">Get the latest tips, insights, and industry news delivered straight to your inbox.</p>
+            <form onsubmit="event.preventDefault(); this.innerHTML='<p class=\'text-white\'>Thank you for subscribing!</p>';" class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <input type="email" required placeholder="Enter your email" class="flex-1 bg-corex-gray border border-white/10 rounded-full px-6 py-4 text-white focus:outline-none focus:border-white/30 transition-colors">
+                <button type="submit" class="bg-white text-black px-8 py-4 rounded-full font-bold hover:bg-gray-200 transition-colors duration-300">
+                    Subscribe
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-white/10 pt-20 pb-10 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-2">
+                    <a href="index.html">
+                        <img src="https://kimi-web-img.moonshot.cn/img/upload/C%20(2)%20copy.png" alt="CORE" class="h-10 w-auto brightness-0 invert mb-6">
+                    </a>
+                    <p class="text-gray-600 max-w-sm mb-6">
+                        The operating partner for holiday home operators. We combine technology, local expertise, and operational excellence to maximize your property's potential.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://linkedin.com/company/core-dxb" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/20 transition-colors">
+                            <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-4">Company</h4>
+                    <ul class="space-y-3 text-gray-600 text-sm">
+                        <li><a href="about.html" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="blog.html" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="pricing.html" class="hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-4">Solutions</h4>
+                    <ul class="space-y-3 text-gray-600 text-sm">
+                        <li><a href="revenue-management.html" class="hover:text-white transition-colors">Revenue Management</a></li>
+                        <li><a href="operations.html" class="hover:text-white transition-colors">Operations</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-800 text-sm">© 2026 CORE. All rights reserved.</p>
+
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

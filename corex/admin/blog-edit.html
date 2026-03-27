@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Blog Post | CORE Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #000000; color: #ffffff; font-family: 'Inter', sans-serif; }
+        .sidebar { background: #0a0a0a; border-right: 1px solid rgba(255, 255, 255, 0.1); }
+        .nav-item { transition: all 0.3s ease; }
+        .nav-item:hover, .nav-item.active { background: rgba(255, 255, 255, 0.1); }
+        .card { background: #0a0a0a; border: 1px solid rgba(255, 255, 255, 0.1); }
+    </style>
+</head>
+<body class="min-h-screen">
+    <script>if (!localStorage.getItem('adminLoggedIn')) window.location.href = 'login.html';</script>
+
+    <div class="flex min-h-screen">
+        <aside class="sidebar w-64 fixed h-full overflow-y-auto">
+            <div class="p-6">
+                <a href="../index.html" target="_blank">
+                    <img src="https://kimi-web-img.moonshot.cn/img/upload/C%20(2)%20copy.png" alt="CORE" class="h-8 w-auto brightness-0 invert">
+                </a>
+            </div>
+            <nav class="px-4 pb-6">
+                <p class="text-xs text-gray-600 uppercase tracking-wider mb-3 px-4">Content</p>
+                <a href="dashboard.html" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:text-white">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+                    Dashboard
+                </a>
+                <a href="pages.html" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:text-white">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    Pages
+                </a>
+                <a href="blogs.html" class="nav-item active flex items-center gap-3 px-4 py-3 rounded-xl text-white">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+                    Blog Posts
+                </a>
+                <a href="case-studies.html" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:text-white">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    Case Studies
+                </a>
+                <a href="testimonials.html" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:text-white">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+                    Testimonials
+                </a>
+                <a href="seo.html" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:text-white">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
+                    SEO Settings
+                </a>
+                <p class="text-xs text-gray-600 uppercase tracking-wider mb-3 mt-6 px-4">Account</p>
+                <button onclick="logout()" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:text-red-400">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+                    Logout
+                </button>
+            </nav>
+        </aside>
+
+        <main class="flex-1 ml-64 p-8">
+            <div class="flex justify-between items-center mb-8">
+                <div>
+                    <h1 class="text-3xl font-bold text-white" id="pageTitle">New Blog Post</h1>
+                    <p class="text-gray-500 mt-1">Create or edit your blog content</p>
+                </div>
+                <div class="flex gap-3">
+                    <a href="blogs.html" class="text-gray-400 hover:text-white transition-colors px-4 py-2">← Back</a>
+                    <button onclick="saveBlog(false)" class="bg-white/10 text-white px-6 py-2 rounded-lg font-medium hover:bg-white/20 transition-colors">Save Draft</button>
+                    <button onclick="saveBlog(true)" class="bg-white text-black px-6 py-2 rounded-lg font-bold hover:bg-gray-200 transition-colors">Publish</button>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-6">
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="card rounded-2xl p-6">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Title</label>
+                                <input type="text" id="title" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors text-lg" placeholder="Enter blog post title">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Content</label>
+                                <textarea id="content" rows="15" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors font-mono text-sm" placeholder="Write your blog post content here..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="card rounded-2xl p-6">
+                        <h3 class="text-lg font-bold text-white mb-4">Post Settings</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Category</label>
+                                <select id="category" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors">
+                                    <option value="">Select category</option>
+                                    <option value="Case Study">Case Study</option>
+                                    <option value="Industry Insights">Industry Insights</option>
+                                    <option value="Tips & Guides">Tips & Guides</option>
+                                    <option value="News">News</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Author</label>
+                                <input type="text" id="author" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors text-sm" placeholder="Author name">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Featured Image URL</label>
+                                <input type="text" id="image" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors text-sm" placeholder="https://...">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Excerpt</label>
+                                <textarea id="excerpt" rows="3" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors text-sm" placeholder="Short excerpt for preview..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card rounded-2xl p-6">
+                        <h3 class="text-lg font-bold text-white mb-4">SEO</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Meta Title</label>
+                                <input type="text" id="metaTitle" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors text-sm" placeholder="SEO title">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Meta Description</label>
+                                <textarea id="metaDescription" rows="3" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors text-sm" placeholder="SEO description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const blogId = urlParams.get('id');
+
+        if (blogId) {
+            const blogs = JSON.parse(localStorage.getItem('coreBlogs') || '[]');
+            const blog = blogs.find(b => b.id === blogId);
+            if (blog) {
+                document.getElementById('pageTitle').textContent = 'Edit Blog Post';
+                document.getElementById('title').value = blog.title || '';
+                document.getElementById('content').value = blog.content || '';
+                document.getElementById('metaTitle').value = blog.metaTitle || '';
+                document.getElementById('metaDescription').value = blog.metaDescription || '';
+                document.getElementById('category').value = blog.category || '';
+                document.getElementById('author').value = blog.author || '';
+                document.getElementById('image').value = blog.image || '';
+                document.getElementById('excerpt').value = blog.excerpt || '';
+            }
+        }
+
+        function saveBlog(publish) {
+            const title = document.getElementById('title').value;
+            const content = document.getElementById('content').value;
+            
+            if (!title || !content) {
+                alert('Please enter a title and content');
+                return;
+            }
+
+            const blog = {
+                id: blogId || 'blog_' + Date.now(),
+                title: title,
+                content: content,
+                metaTitle: document.getElementById('metaTitle').value || title,
+                metaDescription: document.getElementById('metaDescription').value,
+                category: document.getElementById('category').value,
+                author: document.getElementById('author').value || 'CORE Team',
+                image: document.getElementById('image').value,
+                excerpt: document.getElementById('excerpt').value || content.substring(0, 150) + '...',
+                date: new Date().toISOString(),
+                published: publish
+            };
+
+            let blogs = JSON.parse(localStorage.getItem('coreBlogs') || '[]');
+            
+            if (blogId) {
+                const index = blogs.findIndex(b => b.id === blogId);
+                if (index !== -1) blogs[index] = { ...blogs[index], ...blog };
+            } else {
+                blogs.unshift(blog);
+            }
+
+            localStorage.setItem('coreBlogs', JSON.stringify(blogs));
+            
+            const activity = JSON.parse(localStorage.getItem('coreActivity') || '[]');
+            activity.unshift({
+                action: (blogId ? 'Updated' : 'Created') + ' blog post: ' + title,
+                date: new Date().toISOString()
+            });
+            localStorage.setItem('coreActivity', JSON.stringify(activity.slice(0, 10)));
+            
+            alert(publish ? 'Blog post published!' : 'Draft saved!');
+            window.location.href = 'blogs.html';
+        }
+
+        function logout() {
+            localStorage.removeItem('adminLoggedIn');
+            localStorage.removeItem('adminEmail');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>

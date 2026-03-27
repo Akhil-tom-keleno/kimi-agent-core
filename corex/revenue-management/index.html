@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revenue Management for Holiday Homes | CORE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        core: {
+                            black: '#000000',
+                            card: '#0a0a0a',
+                            'card-alt': '#111111',
+                            charcoal: '#1a1a1a',
+                            'text-muted': '#888888',
+                            'text-body': '#666666',
+                            'border': 'rgba(255,255,255,0.1)',
+                            'border-hover': 'rgba(255,255,255,0.2)',
+                            'border-accent': 'rgba(255,255,255,0.3)',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-card {
+            background: #0a0a0a;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .glass-card:hover {
+            border-color: rgba(255,255,255,0.2);
+        }
+        .number-badge {
+            background: #111111;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.2);
+        }
+        .btn-primary {
+            background: #ffffff;
+            color: #000000;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background: rgba(255,255,255,0.9);
+            transform: scale(1.05);
+        }
+        .btn-secondary {
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.4);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #ffffff 0%, #888888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .section-divider {
+            border-color: rgba(255,255,255,0.1);
+        }
+    </style>
+</head>
+<body class="antialiased bg-core-black">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-core-black/90 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3">
+                    <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+                        <span class="text-black font-bold text-xl">C</span>
+                    </div>
+                    <span class="font-bold text-2xl tracking-tight text-white">CORE</span>
+                </a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#solutions" class="text-core-text-muted hover:text-white transition-colors">Solutions</a>
+                    <a href="#features" class="text-core-text-muted hover:text-white transition-colors">Features</a>
+                    <a href="#how-it-works" class="text-core-text-muted hover:text-white transition-colors">How it Works</a>
+                    <a href="#case-study" class="text-core-text-muted hover:text-white transition-colors">Results</a>
+                </div>
+                <button class="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-white/90 transition-all transform hover:scale-105">
+                    Get Free Audit
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden bg-core-black">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.03),_transparent_50%)]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-core-card border border-white/10 text-core-text-muted text-sm font-medium">
+                        <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                        Revenue Management Solutions
+                    </div>
+                    <h1 class="text-5xl lg:text-7xl font-bold leading-tight text-white">
+                        Maximize Your <span class="text-core-text-muted">Holiday Home Revenue</span>
+                    </h1>
+                    <p class="text-xl text-core-text-muted leading-relaxed max-w-lg">
+                        Data-driven pricing strategies that increase your income by 20% or more. Trusted by 200+ property owners across Dubai.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/90 transition-all transform hover:scale-105">
+                            Get Your Free Revenue Audit
+                        </button>
+                        <button class="px-8 py-4 rounded-full font-semibold text-lg border border-white/20 hover:bg-white/5 transition-all">
+                            View Case Studies
+                        </button>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-0 bg-white/5 rounded-3xl blur-3xl"></div>
+                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop" 
+                         alt="Dubai Luxury Property" 
+                         class="relative rounded-3xl shadow-2xl border border-white/10 w-full object-cover h-[500px]">
+                    <div class="absolute -bottom-6 -left-6 bg-core-card p-6 rounded-2xl border border-white/10 shadow-xl">
+                        <div class="text-3xl font-bold text-white">35%</div>
+                        <div class="text-sm text-core-text-muted">RevPAR Increase</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trusted By -->
+    <section class="py-12 border-y border-white/5 bg-core-card/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-core-text-muted text-sm font-medium mb-8 uppercase tracking-wider">Trusted by leading property managers across Dubai</p>
+            <div class="flex flex-wrap justify-center items-center gap-12 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+                <div class="text-2xl font-bold text-white">DAMAC</div>
+                <div class="text-2xl font-bold text-white">Emaar</div>
+                <div class="text-2xl font-bold text-white">Airbnb Plus</div>
+                <div class="text-2xl font-bold text-white">Booking.com</div>
+                <div class="text-2xl font-bold text-white">VRBO</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Reasons Section -->
+    <section id="solutions" class="py-24 relative bg-core-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mb-16">
+                <h2 class="text-4xl font-bold mb-6 text-white">Top reasons Revenue Managers turn to <span class="text-core-text-muted">CORE</span></h2>
+                <p class="text-core-text-muted text-lg">Power your revenue strategy with modern solutions from a team that understands the Dubai holiday home market changes fast and you need a partner that can respond rapidly.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- 01 -->
+                <div class="glass-card p-8 rounded-2xl hover-lift group bg-core-card">
+                    <div class="flex items-start gap-6">
+                        <div class="number-badge w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <span class="text-2xl font-bold text-white">01</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-semibold mb-3 text-white group-hover:text-core-text-muted transition-colors">Grow Revenue</h3>
+                            <p class="text-core-text-muted leading-relaxed">Hit your revenue goals through data-driven pricing strategies that adapt to market conditions in real-time, capturing higher ADR during peak demand.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 02 -->
+                <div class="glass-card p-8 rounded-2xl hover-lift group bg-core-card">
+                    <div class="flex items-start gap-6">
+                        <div class="number-badge w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <span class="text-2xl font-bold text-white">02</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-semibold mb-3 text-white group-hover:text-core-text-muted transition-colors">Maximize Occupancy</h3>
+                            <p class="text-core-text-muted leading-relaxed">Optimize occupancy rates through intelligent demand forecasting and strategic booking windows, ensuring you never leave money on the table.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 03 -->
+                <div class="glass-card p-8 rounded-2xl hover-lift group bg-core-card">
+                    <div class="flex items-start gap-6">
+                        <div class="number-badge w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <span class="text-2xl font-bold text-white">03</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-semibold mb-3 text-white group-hover:text-core-text-muted transition-colors">Optimize Rates</h3>
+                            <p class="text-core-text-muted leading-relaxed">Never miss a revenue opportunity with 24/7 price adjustments based on market demand, events, and competitor analysis specific to Dubai.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 04 -->
+                <div class="glass-card p-8 rounded-2xl hover-lift group bg-core-card">
+                    <div class="flex items-start gap-6">
+                        <div class="number-badge w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <span class="text-2xl font-bold text-white">04</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-semibold mb-3 text-white group-hover:text-core-text-muted transition-colors">Actionable Insights</h3>
+                            <p class="text-core-text-muted leading-relaxed">Make informed decisions in real time with flexible reports and dashboards that give you access to everything you need from anywhere.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategic Revenue Management -->
+    <section id="features" class="py-24 bg-core-card-alt/30 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold mb-6 text-white">Strategic Revenue <span class="text-core-text-muted">Management</span></h2>
+                    <p class="text-core-text-muted text-lg mb-12">We serve as your dedicated revenue manager, capturing higher revenues through pricing strategies designed specifically for your portfolio.</p>
+                    
+                    <div class="space-y-8">
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold mb-2 text-white">Dynamic Pricing</h4>
+                                <p class="text-core-text-muted">Automated rate adjustments based on demand, seasonality, and local events in Dubai.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold mb-2 text-white">Market Analysis</h4>
+                                <p class="text-core-text-muted">Deep dive into your portfolio performance and competitive positioning in the Dubai market.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold mb-2 text-white">Channel Optimization</h4>
+                                <p class="text-core-text-muted">Strategic distribution across Airbnb, Booking.com, VRBO, and direct booking channels.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-0 bg-white/5 rounded-3xl blur-3xl"></div>
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=700&fit=crop" 
+                         alt="Analytics Dashboard" 
+                         class="relative rounded-3xl shadow-2xl border border-white/10 w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-24 bg-core-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-4xl font-bold mb-6 text-white">How It <span class="text-core-text-muted">Works</span></h2>
+                <p class="text-core-text-muted text-lg">Put your pricing on autopilot with our proven methodology</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="relative">
+                    <div class="glass-card p-8 rounded-2xl h-full hover-lift bg-core-card border border-white/10">
+                        <div class="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center font-bold text-xl mb-6">1</div>
+                        <h4 class="text-xl font-semibold mb-3 text-white">Analysis</h4>
+                        <p class="text-core-text-muted text-sm">Deep dive into your portfolio performance and market positioning.</p>
+                    </div>
+                    <div class="hidden lg:block absolute top-1/2 -right-3 w-6 h-px bg-white/20"></div>
+                </div>
+
+                <div class="relative">
+                    <div class="glass-card p-8 rounded-2xl h-full hover-lift bg-core-card border border-white/10">
+                        <div class="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center font-bold text-xl mb-6">2</div>
+                        <h4 class="text-xl font-semibold mb-3 text-white">Strategy</h4>
+                        <p class="text-core-text-muted text-sm">Custom pricing strategy tailored to your specific market and goals.</p>
+                    </div>
+                    <div class="hidden lg:block absolute top-1/2 -right-3 w-6 h-px bg-white/20"></div>
+                </div>
+
+                <div class="relative">
+                    <div class="glass-card p-8 rounded-2xl h-full hover-lift bg-core-card border border-white/10">
+                        <div class="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center font-bold text-xl mb-6">3</div>
+                        <h4 class="text-xl font-semibold mb-3 text-white">Implementation</h4>
+                        <p class="text-core-text-muted text-sm">Hands-free execution across all your distribution channels.</p>
+                    </div>
+                    <div class="hidden lg:block absolute top-1/2 -right-3 w-6 h-px bg-white/20"></div>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl h-full hover-lift bg-core-card border border-white/10">
+                    <div class="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center font-bold text-xl mb-6">4</div>
+                    <h4 class="text-xl font-semibold mb-3 text-white">Optimization</h4>
+                    <p class="text-core-text-muted text-sm">Continuous monitoring and adjustments to maximize results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study -->
+    <section id="case-study" class="py-24 bg-core-card-alt/20 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-8 lg:p-16 border border-white/10 relative overflow-hidden bg-core-card">
+                <div class="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                
+                <div class="grid lg:grid-cols-2 gap-12 items-center relative">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-core-text-muted text-sm font-medium mb-6">
+                            Featured Case Study
+                        </div>
+                        <h3 class="text-3xl lg:text-4xl font-bold mb-6 text-white">Turning Properties Into Market Leaders</h3>
+                        <p class="text-core-text-muted text-lg mb-8">How we helped a luxury villa owner in Palm Jumeirah increase their RevPAR by 35% while maintaining 85%+ occupancy year-round.</p>
+                        
+                        <div class="grid grid-cols-2 gap-6 mb-8">
+                            <div class="border-l-2 border-white/20 pl-4">
+                                <div class="text-3xl font-bold text-white">35%</div>
+                                <div class="text-sm text-core-text-muted">RevPAR Increase</div>
+                            </div>
+                            <div class="border-l-2 border-white/20 pl-4">
+                                <div class="text-3xl font-bold text-white">85%</div>
+                                <div class="text-sm text-core-text-muted">Occupancy Rate</div>
+                            </div>
+                        </div>
+
+                        <button class="text-white font-semibold hover:text-core-text-muted transition-colors flex items-center gap-2 group">
+                            Read Full Case Study 
+                            <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&h=500&fit=crop" 
+                             alt="Palm Jumeirah Villa" 
+                             class="rounded-2xl shadow-2xl w-full object-cover h-[400px] border border-white/10">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-24 bg-core-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-16 text-white">What Our <span class="text-core-text-muted">Clients</span> Say</h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="glass-card p-8 rounded-2xl border border-white/10 bg-core-card">
+                    <div class="flex gap-1 mb-6">
+                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    </div>
+                    <p class="text-lg mb-6 text-core-text-muted">"CORE transformed our approach to pricing. We've seen a consistent 30%+ increase in revenue since partnering with them."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="Client" class="w-12 h-12 rounded-full object-cover border border-white/10">
+                        <div>
+                            <div class="font-semibold text-white">Mohammed Al-Farsi</div>
+                            <div class="text-sm text-core-text-muted">Owner, Luxury Stays Dubai</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl border border-white/10 bg-core-card">
+                    <div class="flex gap-1 mb-6">
+                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    </div>
+                    <p class="text-lg mb-6 text-core-text-muted">"Their team truly understands the Dubai market. Our occupancy rates have never been higher."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Client" class="w-12 h-12 rounded-full object-cover border border-white/10">
+                        <div>
+                            <div class="font-semibold text-white">Sarah Johnson</div>
+                            <div class="text-sm text-core-text-muted">Property Manager, Dubai Marina</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 relative overflow-hidden bg-core-card-alt/30 border-y border-white/5">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.03),_transparent_70%)]"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6 text-white">Ready to Maximize Your <span class="text-core-text-muted">Revenue</span>?</h2>
+            <p class="text-xl text-core-text-muted mb-10">Join 200+ property owners who trust CORE DXB with their revenue management. Get your free revenue audit today and discover how much more you could be earning.</p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="bg-white text-black px-10 py-5 rounded-full font-bold text-lg hover:bg-white/90 transition-all transform hover:scale-105 shadow-xl">
+                    Get Free Revenue Audit
+                </button>
+                <button class="px-10 py-5 rounded-full font-bold text-lg border border-white/20 hover:bg-white/5 transition-all">
+                    Schedule a Call
+                </button>
+            </div>
+            
+            <p class="mt-6 text-sm text-core-text-muted">No commitment required. Audit delivered within 48 hours.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-core-black border-t border-white/5 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-2">
+                    <a href="/" class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+                            <span class="text-black font-bold text-xl">C</span>
+                        </div>
+                        <span class="font-bold text-2xl text-white">CORE</span>
+                    </a>
+                    <p class="text-core-text-muted mb-4 max-w-sm">Maximizing revenue for holiday home owners across Dubai through data-driven pricing strategies.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-white">Services</h4>
+                    <ul class="space-y-2 text-core-text-muted">
+                        <li><a href="#" class="hover:text-white transition-colors">Revenue Management</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Pricing Strategy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Channel Management</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Market Analysis</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-white">Company</h4>
+                    <ul class="space-y-2 text-core-text-muted">
+                        <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Case Studies</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-core-text-muted text-sm">© 2026 CORE DXB. All rights reserved.</p>
+                <div class="flex gap-6 text-sm text-core-text-muted">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

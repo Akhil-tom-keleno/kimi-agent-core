@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing | CORE</title>
+    <meta name="description" content="Transparent pricing for CORE's holiday home management services in Dubai. Choose the plan that fits your portfolio.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        corex: {
+                            black: '#000000',
+                            dark: '#0a0a0a',
+                            darker: '#050505',
+                            gray: '#111111',
+                            grayLight: '#1a1a1a',
+                            light: '#ffffff',
+                            muted: '#888888'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+            opacity: 0.6;
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ffffff;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .feature-card {
+            background: #0a0a0a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-4px);
+        }
+        .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .pricing-card {
+            background: #0a0a0a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .pricing-card:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        .pricing-card.popular {
+            border-color: rgba(255, 255, 255, 0.4);
+            position: relative;
+        }
+        .pricing-card.popular::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            color: black;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden bg-black">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300 bg-black/80 backdrop-blur-md border-b border-white/5" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <img src="https://kimi-web-img.moonshot.cn/img/upload/C%20(2)%20copy.png" alt="CORE" class="h-8 md:h-10 w-auto brightness-0 invert">
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <!-- Solutions Dropdown -->
+                <div class="dropdown relative">
+                    <button class="nav-link text-sm font-medium text-gray-400 hover:text-white flex items-center gap-1">
+                        Solutions
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu absolute top-full left-0 mt-2 w-56 bg-corex-gray border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                        <a href="revenue-management.html" class="block px-4 py-3 text-sm text-gray-400 hover:text-white hover:bg-white/10 transition-colors">Revenue Management</a>
+                        <a href="operations.html" class="block px-4 py-3 text-sm text-gray-400 hover:text-white hover:bg-white/10 transition-colors">Operations</a>
+                    </div>
+                </div>
+                <a href="book-a-call.html" class="bg-white text-black px-6 py-2.5 rounded-full text-sm font-bold hover:bg-gray-200 transition-colors duration-300">Book a call</a>
+            </div>
+
+            <button class="md:hidden text-white" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black border-t border-white/10 absolute w-full">
+            <div class="px-6 py-4 space-y-3">
+                <p class="text-gray-500 text-xs uppercase tracking-wider">Solutions</p>
+                <a href="revenue-management.html" class="block text-gray-400 hover:text-white py-2 pl-4">Revenue Management</a>
+                <a href="operations.html" class="block text-gray-400 hover:text-white py-2 pl-4">Operations</a>
+                <a href="book-a-call.html" class="block bg-white text-black px-4 py-2 rounded-full font-bold text-center mt-4">Book a call</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[50vh] flex items-center justify-center pt-32 pb-20 overflow-hidden bg-black">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/5 via-transparent to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+            <span class="section-label">Pricing</span>
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[0.9] tracking-tight">
+                Simple, transparent<br>pricing
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto font-light leading-relaxed">
+                Choose the plan that fits your portfolio. No hidden fees, no surprises.
+            </p>
+        </div>
+    </section>
+
+    <!-- Pricing Cards -->
+    <section class="py-20 px-6 bg-black">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Revenue Optimization Plan -->
+                <div class="pricing-card rounded-3xl p-8">
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-white mb-2">Revenue Optimization</h3>
+                        <p class="text-gray-500 text-sm">Put your pricing on autopilot</p>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-gray-300">Listing optimization</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-gray-300">Dynamic pricing</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-gray-300">Forecast Creation</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-gray-300">Monthly reporting</span>
+                        </li>
+                    </ul>
+                    <a href="book-a-call.html" class="block w-full text-center bg-white text-black py-4 rounded-xl font-bold hover:bg-gray-200 transition-all duration-300">
+                        Get Pricing
+                    </a>
+                </div>
+
+                <!-- Operations Plan -->
+                <div class="pricing-card popular rounded-3xl p-8 pt-12">
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-white mb-2">Operations</h3>
+                        <p class="text-gray-500 text-sm">Put your operations on autopilot</p>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-gray-300">Housekeeping included</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-gray-300">Maintenance</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-gray-300">Guest Communication</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-gray-300">Dedicated account manager</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-gray-300">Weekly reporting</span>
+                        </li>
+                    </ul>
+                    <a href="book-a-call.html" class="block w-full text-center bg-white text-black py-4 rounded-xl font-bold hover:bg-gray-200 transition-all duration-300">
+                        Get Pricing
+                    </a>
+                </div>
+
+                <!-- Full Stack Plan -->
+                <div class="pricing-card rounded-3xl p-8">
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-white mb-2">Full Stack</h3>
+                        <p class="text-gray-500 text-sm">For serious operators</p>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-gray-300">Everything in Revenue Optimization</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-gray-300">Everything in Operations</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-gray-300">Dedicated revenue manager</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-gray-300">New property onboarding support</span>
+                        </li>
+                    </ul>
+                    <a href="book-a-call.html" class="block w-full text-center bg-white text-black py-4 rounded-xl font-bold hover:bg-gray-200 transition-all duration-300">
+                        Get Pricing
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-32 px-6 bg-corex-darker">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="section-label">FAQ</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Frequently asked<br>questions</h2>
+            </div>
+
+            <div class="space-y-6">
+                <div class="feature-card rounded-2xl p-6">
+                    <h3 class="text-lg font-bold text-white mb-3">What's included in the management fee?</h3>
+                    <p class="text-gray-500">Our management fee covers everything from listing optimization and dynamic pricing to guest communication and performance reporting. Housekeeping and maintenance are available as add-ons or included in higher-tier plans.</p>
+                </div>
+
+                <div class="feature-card rounded-2xl p-6">
+                    <h3 class="text-lg font-bold text-white mb-3">Are there any setup fees?</h3>
+                    <p class="text-gray-500">No, there are no setup fees. We believe in earning your business through results, not upfront costs.</p>
+                </div>
+
+                <div class="feature-card rounded-2xl p-6">
+                    <h3 class="text-lg font-bold text-white mb-3">How do I get paid?</h3>
+                    <p class="text-gray-500">You receive your rental income directly from the booking platforms (Airbnb, Booking.com, etc.). Our management fee is invoiced monthly based on your booking revenue.</p>
+                </div>
+
+                <div class="feature-card rounded-2xl p-6">
+                    <h3 class="text-lg font-bold text-white mb-3">Can I cancel anytime?</h3>
+                    <p class="text-gray-500">Yes, our agreements are month-to-month with a 30-day notice period. We believe in earning your business every month through exceptional service and results.</p>
+                </div>
+
+                <div class="feature-card rounded-2xl p-6">
+                    <h3 class="text-lg font-bold text-white mb-3">What properties do you work with?</h3>
+                    <p class="text-gray-500">We work with holiday homes, vacation rentals, and short-term rental properties across Dubai. All properties must meet our quality standards and comply with local regulations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-32 px-6 bg-black">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Still have questions?</h2>
+            <p class="text-gray-500 text-lg mb-10 max-w-2xl mx-auto">Schedule a call with our team to discuss your specific needs and get a personalized quote.</p>
+            <a href="book-a-call.html" class="inline-block bg-white text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-200 transition-all duration-300">
+                Book a call
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-white/10 pt-20 pb-10 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-2">
+                    <a href="index.html">
+                        <img src="https://kimi-web-img.moonshot.cn/img/upload/C%20(2)%20copy.png" alt="CORE" class="h-10 w-auto brightness-0 invert mb-6">
+                    </a>
+                    <p class="text-gray-600 max-w-sm mb-6">
+                        The operating partner for holiday home operators. We combine technology, local expertise, and operational excellence to maximize your property's potential.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://linkedin.com/company/core-dxb" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/20 transition-colors">
+                            <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-4">Company</h4>
+                    <ul class="space-y-3 text-gray-600 text-sm">
+                        <li><a href="about.html" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="blog.html" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="pricing.html" class="hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-4">Solutions</h4>
+                    <ul class="space-y-3 text-gray-600 text-sm">
+                        <li><a href="revenue-management.html" class="hover:text-white transition-colors">Revenue Management</a></li>
+                        <li><a href="operations.html" class="hover:text-white transition-colors">Operations</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-800 text-sm">© 2026 CORE. All rights reserved.</p>
+
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

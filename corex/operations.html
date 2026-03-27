@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operations | CORE</title>
+    <meta name="description" content="CORE's end-to-end operations management ensures your properties are maintained to the highest standards.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        corex: {
+                            black: '#000000',
+                            dark: '#0a0a0a',
+                            darker: '#050505',
+                            gray: '#111111',
+                            grayLight: '#1a1a1a',
+                            light: '#ffffff',
+                            muted: '#888888'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+            opacity: 0.6;
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ffffff;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .feature-card {
+            background: #0a0a0a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-4px);
+        }
+        .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden bg-black">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300 bg-black/80 backdrop-blur-md border-b border-white/5" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <img src="https://kimi-web-img.moonshot.cn/img/upload/C%20(2)%20copy.png" alt="CORE" class="h-8 md:h-10 w-auto brightness-0 invert">
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <!-- Solutions Dropdown -->
+                <div class="dropdown relative">
+                    <button class="nav-link text-sm font-medium text-white flex items-center gap-1">
+                        Solutions
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu absolute top-full left-0 mt-2 w-56 bg-corex-gray border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                        <a href="revenue-management.html" class="block px-4 py-3 text-sm text-gray-400 hover:text-white hover:bg-white/10 transition-colors">Revenue Management</a>
+                        <a href="operations.html" class="block px-4 py-3 text-sm text-white hover:bg-white/10 transition-colors border-l-2 border-white">Operations</a>
+                    </div>
+                </div>
+                <a href="book-a-call.html" class="bg-white text-black px-6 py-2.5 rounded-full text-sm font-bold hover:bg-gray-200 transition-colors duration-300">Book a call</a>
+            </div>
+
+            <button class="md:hidden text-white" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black border-t border-white/10 absolute w-full">
+            <div class="px-6 py-4 space-y-3">
+                <p class="text-gray-500 text-xs uppercase tracking-wider">Solutions</p>
+                <a href="revenue-management.html" class="block text-gray-400 hover:text-white py-2 pl-4">Revenue Management</a>
+                <a href="operations.html" class="block text-white py-2 pl-4 border-l-2 border-white">Operations</a>
+                <a href="book-a-call.html" class="block bg-white text-black px-4 py-2 rounded-full font-bold text-center mt-4">Book a call</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[70vh] flex items-center justify-center pt-32 pb-20 overflow-hidden bg-black">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/5 via-transparent to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+            <span class="section-label">Solutions</span>
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[0.9] tracking-tight">
+                Operations
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-12 font-light leading-relaxed">
+                End-to-end operations management that ensures your properties are maintained to the highest standards, every single day.
+            </p>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 px-6 bg-corex-darker border-y border-white/5">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div>
+                    <p class="text-5xl md:text-6xl font-black text-white mb-2">4.9</p>
+                    <p class="text-gray-500">Average Guest Rating</p>
+                </div>
+                <div>
+                    <p class="text-5xl md:text-6xl font-black text-white mb-2">24/7</p>
+                    <p class="text-gray-500">Support Available</p>
+                </div>
+                <div>
+                    <p class="text-5xl md:text-6xl font-black text-white mb-2">&lt;2min</p>
+                    <p class="text-gray-500">Average Response Time</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-32 px-6 bg-black">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20">
+                <span class="section-label">Our Services</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Complete operational<br>excellence</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Housekeeping -->
+                <div class="feature-card rounded-3xl p-8 md:p-10">
+                    <div class="flex items-start gap-6">
+                        <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-3">Housekeeping</h3>
+                            <p class="text-gray-500 leading-relaxed mb-4">Professional cleaning services between guest stays, with detailed checklists and quality inspections to ensure 5-star standards.</p>
+                            <ul class="space-y-2 text-sm text-gray-400">
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                    Turnover cleaning
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                    Deep cleaning schedules
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                    Linen & amenity restocking
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Maintenance -->
+                <div class="feature-card rounded-3xl p-8 md:p-10">
+                    <div class="flex items-start gap-6">
+                        <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-3">Maintenance</h3>
+                            <p class="text-gray-500 leading-relaxed mb-4">24/7 maintenance coordination with trusted contractors for everything from AC repairs to plumbing emergencies.</p>
+                            <ul class="space-y-2 text-sm text-gray-400">
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                    Emergency repairs
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                    Preventive maintenance
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                    Appliance servicing
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Inspections -->
+                <div class="feature-card rounded-3xl p-8 md:p-10">
+                    <div class="flex items-start gap-6">
+                        <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-3">Inspections</h3>
+                            <p class="text-gray-500 leading-relaxed mb-4">Comprehensive pre and post-stay inspections with photo documentation to protect your property and ensure quality.</p>
+                            <ul class="space-y-2 text-sm text-gray-400">
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                    Check-in/check-out reports
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                    Photo documentation
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                    Damage assessment
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Guest Communication -->
+                <div class="feature-card rounded-3xl p-8 md:p-10">
+                    <div class="flex items-start gap-6">
+                        <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-3">Guest Communication</h3>
+                            <p class="text-gray-500 leading-relaxed mb-4">Round-the-clock guest support with instant responses, check-in coordination, and personalized recommendations.</p>
+                            <ul class="space-y-2 text-sm text-gray-400">
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                    24/7 messaging support
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                    Check-in coordination
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                    Local recommendations
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="py-32 px-6 bg-corex-darker">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-20">
+                <span class="section-label">How It Works</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Seamless operations<br>from start to finish</h2>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-2xl font-bold text-white">1</span>
+                    </div>
+                    <h4 class="font-bold text-white mb-2">Booking Received</h4>
+                    <p class="text-gray-500 text-sm">Our system automatically schedules all necessary services.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-2xl font-bold text-white">2</span>
+                    </div>
+                    <h4 class="font-bold text-white mb-2">Pre-Stay Prep</h4>
+                    <p class="text-gray-500 text-sm">Housekeeping, inspection, and amenity restocking completed.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-2xl font-bold text-white">3</span>
+                    </div>
+                    <h4 class="font-bold text-white mb-2">Guest Stay</h4>
+                    <p class="text-gray-500 text-sm">24/7 support available for any guest needs or issues.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-2xl font-bold text-white">4</span>
+                    </div>
+                    <h4 class="font-bold text-white mb-2">Post-Stay Review</h4>
+                    <p class="text-gray-500 text-sm">Inspection, turnover cleaning, and maintenance if needed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-32 px-6 bg-black">
+        <div class="max-w-4xl mx-auto text-center">
+            <span class="section-label">Get Started</span>
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Ready to streamline<br>your operations?</h2>
+            <p class="text-gray-500 text-lg mb-10 max-w-2xl mx-auto">Let us handle the day-to-day while you focus on growing your portfolio.</p>
+            <a href="contact.html" class="inline-block bg-white text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-200 transition-all duration-300">
+                Talk to Our Team
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-white/10 pt-20 pb-10 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-2">
+                    <a href="index.html">
+                        <img src="https://kimi-web-img.moonshot.cn/img/upload/C%20(2)%20copy.png" alt="CORE" class="h-10 w-auto brightness-0 invert mb-6">
+                    </a>
+                    <p class="text-gray-600 max-w-sm mb-6">
+                        The operating partner for holiday home operators. We combine technology, local expertise, and operational excellence to maximize your property's potential.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://linkedin.com/company/core-dxb" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/20 transition-colors">
+                            <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-4">Company</h4>
+                    <ul class="space-y-3 text-gray-600 text-sm">
+                        <li><a href="about.html" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="blog.html" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="pricing.html" class="hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-4">Solutions</h4>
+                    <ul class="space-y-3 text-gray-600 text-sm">
+                        <li><a href="revenue-management.html" class="hover:text-white transition-colors">Revenue Management</a></li>
+                        <li><a href="operations.html" class="hover:text-white transition-colors">Operations</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-800 text-sm">© 2026 CORE. All rights reserved.</p>
+
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turning Properties Into Market Leaders | CORE</title>
+    <meta name="description" content="How CORE helped a luxury villa owner in Palm Jumeirah increase their RevPAR by 35% while maintaining 85%+ occupancy year-round.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        corex: {
+                            black: '#000000',
+                            dark: '#0a0a0a',
+                            darker: '#050505',
+                            gray: '#111111',
+                            grayLight: '#1a1a1a',
+                            light: '#ffffff',
+                            muted: '#888888'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #1a1a1a;
+        }
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #1a1a1a;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+            opacity: 0.6;
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #000000;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .feature-card {
+            background: #f8f8f8;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            border-color: rgba(0, 0, 0, 0.2);
+            transform: translateY(-4px);
+        }
+        .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .prose p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: #333333;
+        }
+        .prose h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: #000000;
+        }
+        .prose h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #000000;
+        }
+        .prose ul {
+            color: #333333;
+        }
+        .prose strong {
+            color: #000000;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden bg-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-black/5" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <img src="https://kimi-web-img.moonshot.cn/img/upload/C%20(2)%20copy.png" alt="CORE" class="h-8 md:h-10 w-auto">
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <!-- Solutions Dropdown -->
+                <div class="dropdown relative">
+                    <button class="nav-link text-sm font-medium text-gray-600 hover:text-black flex items-center gap-1">
+                        Solutions
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu absolute top-full left-0 mt-2 w-56 bg-white border border-black/10 rounded-xl overflow-hidden shadow-2xl">
+                        <a href="revenue-management.html" class="block px-4 py-3 text-sm text-gray-600 hover:text-black hover:bg-black/5 transition-colors">Revenue Management</a>
+                        <a href="operations.html" class="block px-4 py-3 text-sm text-gray-600 hover:text-black hover:bg-black/5 transition-colors">Operations</a>
+                    </div>
+                </div>
+                <a href="book-a-call.html" class="bg-black text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-gray-800 transition-colors duration-300">Book a call</a>
+            </div>
+
+            <button class="md:hidden text-black" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-black/10 absolute w-full">
+            <div class="px-6 py-4 space-y-3">
+                <p class="text-gray-400 text-xs uppercase tracking-wider">Solutions</p>
+                <a href="revenue-management.html" class="block text-gray-600 hover:text-black py-2 pl-4">Revenue Management</a>
+                <a href="operations.html" class="block text-gray-600 hover:text-black py-2 pl-4">Operations</a>
+                <a href="book-a-call.html" class="block bg-black text-white px-4 py-2 rounded-full font-bold text-center mt-4">Book a call</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-16 bg-white border-b border-black/5">
+        <div class="max-w-4xl mx-auto px-6">
+            <!-- Breadcrumb -->
+            <div class="flex items-center gap-2 text-sm mb-8">
+                <a href="blog.html" class="text-gray-500 hover:text-black transition-colors">All posts</a>
+                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+                <span class="text-gray-400">Case Study</span>
+            </div>
+
+            <span class="inline-block px-4 py-2 bg-black/5 rounded-full text-sm text-gray-600 mb-6">Case Study</span>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-black mb-6 leading-tight">
+                Turning Properties Into Market Leaders
+            </h1>
+            <p class="text-xl text-gray-600 mb-8 max-w-2xl leading-relaxed">
+                How we helped a luxury villa owner in Palm Jumeirah increase their RevPAR by 35% while maintaining 85%+ occupancy year-round.
+            </p>
+            <div class="flex items-center gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center">
+                        <span class="text-white font-bold">A</span>
+                    </div>
+                    <div>
+                        <p class="text-black font-medium">Ahmed Al-Rashid</p>
+                        <p class="text-gray-500 text-sm">Property Owner</p>
+                    </div>
+                </div>
+                <span class="text-gray-300">|</span>
+                <span class="text-gray-500">January 10, 2026</span>
+            </div>
+
+            <!-- Social Share -->
+            <div class="flex items-center gap-4 mt-8 pt-8 border-t border-black/5">
+                <span class="text-sm text-gray-500">Share:</span>
+                <a href="#" class="w-10 h-10 rounded-full bg-black/5 flex items-center justify-center hover:bg-black hover:text-white transition-colors">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-black/5 flex items-center justify-center hover:bg-black hover:text-white transition-colors">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-black/5 flex items-center justify-center hover:bg-black hover:text-white transition-colors">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Image -->
+    <section class="py-12 bg-white">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="aspect-[16/9] rounded-2xl overflow-hidden">
+                <img src="https://kimi-web-img.moonshot.cn/img/cf.bstatic.com/1147490b45d1707e4edbbe34efea6c4f76ed9352.jpg" alt="Luxury Villa Palm Jumeirah" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="py-16 px-6 bg-white">
+        <div class="max-w-3xl mx-auto prose">
+            <h2>The Challenge</h2>
+            <p>
+                When Ahmed Al-Rashid first approached CORE, he was managing a stunning 5-bedroom villa in Palm Jumeirah. Despite the property's prime location and luxurious amenities, he was struggling to achieve consistent occupancy and optimal revenue. His average occupancy rate hovered around 60%, and he was leaving significant money on the table due to static pricing that didn't account for market fluctuations.
+            </p>
+            <p>
+                "I knew my property had potential," Ahmed recalls, "but I didn't have the time or expertise to optimize pricing across multiple platforms while also managing guest communications and operations."
+            </p>
+
+            <h2>The Solution</h2>
+            <p>
+                CORE implemented a comprehensive revenue management strategy tailored specifically to Ahmed's property and the Dubai market. Our approach included:
+            </p>
+            <h3>1. Dynamic Pricing Implementation</h3>
+            <p>
+                We deployed our AI-powered pricing engine that analyzes over 50 data points in real-time, including competitor rates, local events, seasonal demand, and booking patterns. This allowed us to adjust prices multiple times per day to capture maximum revenue.
+            </p>
+            <h3>2. Multi-Channel Distribution</h3>
+            <p>
+                We optimized Ahmed's presence across Airbnb, Booking.com, and our direct booking platform, ensuring maximum visibility while preventing double bookings through unified calendar management.
+            </p>
+            <h3>3. Professional Listing Optimization</h3>
+            <p>
+                Our team enhanced the property's listings with professional photography, compelling descriptions, and strategic keyword placement to improve search rankings.
+            </p>
+
+            <h2>The Results</h2>
+            <p>
+                Within just six months of partnering with CORE, Ahmed saw remarkable improvements:
+            </p>
+            <ul class="space-y-4 mb-8">
+                <li class="flex items-start gap-3">
+                    <svg class="w-6 h-6 text-black flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    <span><strong>35% increase in RevPAR</strong> — Revenue per available room grew significantly through optimized pricing</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <svg class="w-6 h-6 text-black flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    <span><strong>85%+ occupancy rate</strong> — Up from 60% through strategic pricing and improved visibility</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <svg class="w-6 h-6 text-black flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    <span><strong>4.9 average guest rating</strong> — Maintained through professional operations and guest communication</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <svg class="w-6 h-6 text-black flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    <span><strong>Zero operational headaches</strong> — Ahmed now focuses on growing his portfolio while we handle day-to-day operations</span>
+                </li>
+            </ul>
+
+            <h2>Key Takeaways</h2>
+            <p>
+                Ahmed's success story highlights several important lessons for holiday home operators in Dubai:
+            </p>
+            <p>
+                <strong>Dynamic pricing is essential.</strong> Static pricing simply cannot capture the full revenue potential of a property in a market as dynamic as Dubai. Our AI-powered system ensures prices are always optimized for current market conditions.
+            </p>
+            <p>
+                <strong>Professional management pays for itself.</strong> While some owners hesitate to partner with a management company, the revenue increase typically more than covers the management fees — often by a significant margin.
+            </p>
+            <p>
+                <strong>Guest experience drives revenue.</strong> By maintaining high service standards and responding quickly to guest needs, we were able to secure excellent reviews that further boosted the property's visibility and booking rate.
+            </p>
+
+            <h2>Ready to Transform Your Property?</h2>
+            <p>
+                If you're a holiday home operator in Dubai looking to maximize your revenue and minimize your operational headaches, we'd love to help. Schedule a call with our team to learn how CORE can transform your property's performance.
+            </p>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-6 bg-gray-50">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-black mb-6">Ready to maximize<br>your revenue?</h2>
+            <p class="text-gray-500 text-lg mb-10 max-w-2xl mx-auto">Join hundreds of property owners who trust CORE to optimize their holiday home business.</p>
+            <a href="book-a-call.html" class="inline-block bg-black text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-800 transition-all duration-300">
+                Book a call
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-white/10 pt-20 pb-10 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-2">
+                    <a href="index.html">
+                        <img src="https://kimi-web-img.moonshot.cn/img/upload/C%20(2)%20copy.png" alt="CORE" class="h-10 w-auto brightness-0 invert mb-6">
+                    </a>
+                    <p class="text-gray-600 max-w-sm mb-6">
+                        The operating partner for holiday home operators. We combine technology, local expertise, and operational excellence to maximize your property's potential.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://linkedin.com/company/core-dxb" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/20 transition-colors">
+                            <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-4">Company</h4>
+                    <ul class="space-y-3 text-gray-600 text-sm">
+                        <li><a href="about.html" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="blog.html" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="pricing.html" class="hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-4">Solutions</h4>
+                    <ul class="space-y-3 text-gray-600 text-sm">
+                        <li><a href="revenue-management.html" class="hover:text-white transition-colors">Revenue Management</a></li>
+                        <li><a href="operations.html" class="hover:text-white transition-colors">Operations</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-800 text-sm">© 2026 CORE. All rights reserved.</p>
+
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

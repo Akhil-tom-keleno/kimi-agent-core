@@ -1,0 +1,242 @@
+import { useQuery } from '@tanstack/react-query';
+import { Link, useParams } from 'react-router-dom';
+import { Calendar, ArrowLeft, Tag, User, Clock, Share2, Facebook, Twitter, Linkedin } from 'lucide-react';
+import Layout from '../components/Layout';
+import { fetchBlogPostBySlug, fetchBlogPosts } from '../lib/api';
+
+const BlogPostPage = () => {
+  const { slug } = useParams();
+
+  const { data: post, isLoading: postLoading } = useQuery({
+    queryKey: ['blogPost', slug],
+    queryFn: () => fetchBlogPostBySlug(slug),
+  });
+
+  const { data: relatedPosts } = useQuery({
+    queryKey: ['blogPosts'],
+    queryFn: fetchBlogPosts,
+  });
+
+  if (postLoading) {
+    return (
+      <Layout>
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#4353FF]"></div>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (!post) {
+    return (
+      <Layout>
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-[#0A0A0A] mb-4">Article Not Found</h1>
+            <p className="text-gray-600 mb-6">The article you're looking for doesn't exist.</p>
+            <Link
+              to="/blog"
+              className="inline-flex items-center gap-2 text-[#4353FF] font-medium"
+            >
+              <ArrowLeft className="w-5 h-5" />
+              Back to Blog
+            </Link>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
+  const filteredRelatedPosts = relatedPosts
+    ?.filter(p => p._id !== post._id && p.category === post.category)
+    ?.slice(0, 3) || [];
+
+  return (
+    <Layout>
+      {/* Hero Section */}
+      <section className="bg-[#0A0A0A] text-white pt-32 pb-20">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8">
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-8"
+          >
+            <ArrowLeft className="w-5 h-5" />
+            Back to Blog
+          </Link>
+
+          <div className="flex items-center gap-4 mb-6">
+            {post.category && (
+              <span className="inline-flex items-center gap-1 bg-[#4353FF]/20 text-[#4353FF] px-3 py-1 rounded-full text-sm">
+                <Tag className="w-3 h-3" />
+                {post.category}
+              </span>
+            )}
+            <span className="text-gray-400 text-sm flex items-center gap-1">
+              <Calendar className="w-4 h-4" />
+              {new Date(post.publishedAt).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </span>
+            {post.readTime && (
+              <span className="text-gray-400 text-sm flex items-center gap-1">
+                <Clock className="w-4 h-4" />
+                {post.readTime} min read
+              </span>
+            )}
+          </div>
+
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6">
+            {post.title}
+          </h1>
+
+          <p className="text-xl text-gray-400">
+            {post.excerpt}
+          </p>
+
+          {post.author && (
+            <div className="flex items-center gap-4 mt-8">
+              <div className="w-12 h-12 bg-[#4353FF]/20 rounded-full flex items-center justify-center">
+                <User className="w-6 h-6 text-[#4353FF]" />
+              </div>
+              <div>
+                <div className="font-medium">{post.author}</div>
+                {post.authorTitle && (
+                  <div className="text-sm text-gray-400">{post.authorTitle}</div>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Featured Image */}
+      <section className="bg-white">
+        <div className="max-w-5xl mx-auto px-6 lg:px-8">
+          <div className="aspect-video bg-gray-200 rounded-2xl overflow-hidden -mt-10 relative z-10">
+            {post.featuredImage ? (
+              <img
+                src={post.featuredImage}
+                alt={post.title}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center">
+                <div className="text-center">
+                  <div className="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Tag className="w-10 h-10 text-gray-500" />
+                  </div>
+                  <p className="text-gray-500">Featured Image</p>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Article Content */}
+      <section className="py-16 bg-white">
+        <div className="max-w-3xl mx-auto px-6 lg:px-8">
+          {/* Share Buttons */}
+          <div className="flex items-center gap-4 mb-8 pb-8 border-b border-gray-100">
+            <span className="text-gray-500 text-sm flex items-center gap-2">
+              <Share2 className="w-4 h-4" />
+              Share:
+            </span>
+            <div className="flex gap-2">
+              <button className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-[#4353FF] hover:text-white transition-colors">
+                <Facebook className="w-5 h-5" />
+              </button>
+              <button className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-[#4353FF] hover:text-white transition-colors">
+                <Twitter className="w-5 h-5" />
+              </button>
+              <button className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-[#4353FF] hover:text-white transition-colors">
+                <Linkedin className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+
+          {/* Content */}
+          <div 
+            className="prose prose-lg max-w-none prose-headings:text-[#0A0A0A] prose-p:text-gray-600 prose-a:text-[#4353FF] prose-strong:text-[#0A0A0A]"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
+
+          {/* Tags */}
+          {post.tags && post.tags.length > 0 && (
+            <div className="mt-12 pt-8 border-t border-gray-100">
+              <div className="flex flex-wrap gap-2">
+                {post.tags.map((tag, index) => (
+                  <span
+                    key={index}
+                    className="px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Related Posts */}
+      {filteredRelatedPosts.length > 0 && (
+        <section className="py-20 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <h2 className="text-2xl font-bold text-[#0A0A0A] mb-8">Related Articles</h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              {filteredRelatedPosts.map((relatedPost) => (
+                <Link
+                  key={relatedPost._id}
+                  to={`/blog/${relatedPost.slug}`}
+                  className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow group"
+                >
+                  <div className="aspect-video bg-gray-200 flex items-center justify-center">
+                    {relatedPost.featuredImage ? (
+                      <img
+                        src={relatedPost.featuredImage}
+                        alt={relatedPost.title}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <Tag className="w-10 h-10 text-gray-400" />
+                    )}
+                  </div>
+                  <div className="p-6">
+                    <span className="text-[#4353FF] text-sm font-medium">{relatedPost.category}</span>
+                    <h3 className="text-lg font-semibold text-[#0A0A0A] mt-2 group-hover:text-[#4353FF] transition-colors line-clamp-2">
+                      {relatedPost.title}
+                    </h3>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* CTA Section */}
+      <section className="py-20 bg-[#4353FF]">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Ready to Maximize Your Property's Potential?
+          </h2>
+          <p className="text-xl text-white/80 mb-8">
+            Let's discuss how CORE can help you achieve your rental income goals.
+          </p>
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 bg-white text-[#4353FF] px-8 py-4 rounded-full font-medium hover:bg-gray-100 transition-colors"
+          >
+            Get in Touch
+            <ArrowLeft className="w-5 h-5 rotate-180" />
+          </Link>
+        </div>
+      </section>
+    </Layout>
+  );
+};
+
+export default BlogPostPage;

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Page | CORE Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #000000; color: #ffffff; font-family: 'Inter', sans-serif; }
+        .sidebar { background: #0a0a0a; border-right: 1px solid rgba(255, 255, 255, 0.1); }
+        .nav-item { transition: all 0.3s ease; }
+        .nav-item:hover, .nav-item.active { background: rgba(255, 255, 255, 0.1); }
+        .card { background: #0a0a0a; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .tab { transition: all 0.3s ease; cursor: pointer; }
+        .tab.active { background: rgba(255, 255, 255, 0.1); border-bottom: 2px solid white; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <script>if (!localStorage.getItem('adminLoggedIn')) window.location.href = 'login.html';</script>
+
+    <div class="flex min-h-screen">
+        <aside class="sidebar w-64 fixed h-full overflow-y-auto">
+            <div class="p-6">
+                <a href="../index.html" target="_blank">
+                    <img src="https://kimi-web-img.moonshot.cn/img/upload/C%20(2)%20copy.png" alt="CORE" class="h-8 w-auto brightness-0 invert">
+                </a>
+            </div>
+            <nav class="px-4 pb-6">
+                <p class="text-xs text-gray-600 uppercase tracking-wider mb-3 px-4">Content</p>
+                <a href="dashboard.html" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:text-white">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+                    Dashboard
+                </a>
+                <a href="pages.html" class="nav-item active flex items-center gap-3 px-4 py-3 rounded-xl text-white">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    Pages
+                </a>
+                <a href="blogs.html" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:text-white">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+                    Blog Posts
+                </a>
+                <a href="case-studies.html" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:text-white">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    Case Studies
+                </a>
+                <a href="testimonials.html" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:text-white">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+                    Testimonials
+                </a>
+                <a href="seo.html" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:text-white">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
+                    SEO Settings
+                </a>
+                <p class="text-xs text-gray-600 uppercase tracking-wider mb-3 mt-6 px-4">Account</p>
+                <button onclick="logout()" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:text-red-400">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+                    Logout
+                </button>
+            </nav>
+        </aside>
+
+        <main class="flex-1 ml-64 p-8">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h1 class="text-3xl font-bold text-white" id="pageTitle">Edit Page</h1>
+                    <p class="text-gray-500 mt-1" id="pageFile">page.html</p>
+                </div>
+                <div class="flex gap-3">
+                    <a href="pages.html" class="text-gray-400 hover:text-white transition-colors px-4 py-2">← Back</a>
+                    <a href="#" id="viewPageLink" target="_blank" class="bg-white/10 text-white px-6 py-2 rounded-lg font-medium hover:bg-white/20 transition-colors">View Page</a>
+                    <button onclick="savePage()" class="bg-white text-black px-6 py-2 rounded-lg font-bold hover:bg-gray-200 transition-colors">Save Changes</button>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="flex gap-1 mb-6 border-b border-white/10">
+                <div class="tab active px-6 py-3 text-sm font-medium" data-tab="hero">Hero Section</div>
+                <div class="tab px-6 py-3 text-sm font-medium text-gray-400 hover:text-white" data-tab="content">Content</div>
+                <div class="tab px-6 py-3 text-sm font-medium text-gray-400 hover:text-white" data-tab="cta">CTA Section</div>
+                <div class="tab px-6 py-3 text-sm font-medium text-gray-400 hover:text-white" data-tab="seo">SEO</div>
+            </div>
+
+            <!-- Hero Section Tab -->
+            <div id="hero-tab" class="tab-content">
+                <div class="card rounded-2xl p-6 mb-6">
+                    <h3 class="text-lg font-bold text-white mb-4">Hero Content</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Section Label (e.g., SOLUTIONS)</label>
+                            <input type="text" id="heroLabel" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Headline</label>
+                            <input type="text" id="heroHeadline" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors text-lg">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Subtitle/Description</label>
+                            <textarea id="heroSubtitle" rows="3" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">CTA Button Text</label>
+                            <input type="text" id="heroCta" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card rounded-2xl p-6">
+                    <h3 class="text-lg font-bold text-white mb-4">Hero Image</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Image URL</label>
+                            <input type="text" id="heroImage" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors" placeholder="https://...">
+                        </div>
+                        <div id="heroImagePreview" class="hidden">
+                            <p class="text-sm text-gray-500 mb-2">Preview:</p>
+                            <img src="" alt="Hero preview" class="max-w-md rounded-xl border border-white/10">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Tab -->
+            <div id="content-tab" class="tab-content hidden">
+                <div class="card rounded-2xl p-6 mb-6">
+                    <h3 class="text-lg font-bold text-white mb-4">Main Content Sections</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Section 1 Title</label>
+                            <input type="text" id="section1Title" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Section 1 Content</label>
+                            <textarea id="section1Content" rows="4" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Section 1 Image URL</label>
+                            <input type="text" id="section1Image" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors" placeholder="https://...">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card rounded-2xl p-6">
+                    <h3 class="text-lg font-bold text-white mb-4">Stats Section</h3>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Stat 1 Value</label>
+                            <input type="text" id="stat1Value" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Stat 1 Label</label>
+                            <input type="text" id="stat1Label" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Stat 2 Value</label>
+                            <input type="text" id="stat2Value" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Stat 2 Label</label>
+                            <input type="text" id="stat2Label" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Stat 3 Value</label>
+                            <input type="text" id="stat3Value" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Stat 3 Label</label>
+                            <input type="text" id="stat3Label" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Tab -->
+            <div id="cta-tab" class="tab-content hidden">
+                <div class="card rounded-2xl p-6">
+                    <h3 class="text-lg font-bold text-white mb-4">CTA Section Content</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Section Label (e.g., GET STARTED)</label>
+                            <input type="text" id="ctaLabel" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Headline</label>
+                            <input type="text" id="ctaHeadline" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors text-lg">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Description</label>
+                            <textarea id="ctaDescription" rows="3" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">CTA Button Text</label>
+                            <input type="text" id="ctaButton" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">CTA Image URL (optional)</label>
+                            <input type="text" id="ctaImage" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors" placeholder="https://...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEO Tab -->
+            <div id="seo-tab" class="tab-content hidden">
+                <div class="card rounded-2xl p-6">
+                    <h3 class="text-lg font-bold text-white mb-4">SEO Settings</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Page Title</label>
+                            <input type="text" id="pageTitleInput" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Meta Description</label>
+                            <textarea id="metaDescription" rows="3" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Meta Keywords (comma separated)</label>
+                            <input type="text" id="metaKeywords" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const pageName = urlParams.get('page');
+
+        // Default page data
+        const defaultPageData = {
+            'index': {
+                title: 'Homepage',
+                file: 'index.html',
+                heroLabel: '',
+                heroHeadline: 'Operating Partner for Holiday Home Businesses',
+                heroSubtitle: "We built the infrastructure so you don't have to. Plug in world-class distribution, revenue management, and operational efficiency — and focus on what makes your brand great.",
+                heroCta: 'Partner With Us',
+                heroImage: 'https://kimi-web-img.moonshot.cn/img/cf.bstatic.com/d0bfeee6e555a530435123d01951d22097b0fd13.jpg',
+                section1Title: '',
+                section1Content: '',
+                section1Image: '',
+                stat1Value: '200+',
+                stat1Label: 'Properties Managed',
+                stat2Value: '+20%',
+                stat2Label: 'Avg. Revenue Increase',
+                stat3Value: '4.9',
+                stat3Label: 'Guest Rating',
+                ctaLabel: '',
+                ctaHeadline: 'Ready to scale your holiday home business?',
+                ctaDescription: "Let's discuss how CORE can help you grow.",
+                ctaButton: 'Book a call',
+                ctaImage: '',
+                pageTitle: 'CORE | Operating Partner for Holiday Home Businesses',
+                metaDescription: 'CORE is the operating partner for holiday home businesses.',
+                metaKeywords: 'holiday home, property management, Dubai, revenue management'
+            },
+            'revenue-management': {
+                title: 'Revenue Management',
+                file: 'revenue-management.html',
+                heroLabel: 'SOLUTIONS',
+                heroHeadline: 'Revenue Management',
+                heroSubtitle: "Put your rates on autopilot. CORE ensures your listings are priced to maximize revenue, boost occupancy, and stay ahead of the market.",
+                heroCta: 'Book a call',
+                heroImage: '',
+                stat1Value: '+20%',
+                stat1Label: 'Average Revenue Increase',
+                stat2Value: '24/7',
+                stat2Label: 'Price Optimization',
+                stat3Value: '50+',
+                stat3Label: 'Data Points Analyzed',
+                ctaLabel: 'GET STARTED',
+                ctaHeadline: 'Ready to maximize your revenue?',
+                ctaDescription: "Join hundreds of property owners who trust CORE's revenue management to optimize their pricing strategy.",
+                ctaButton: 'Talk to Our Team',
+                ctaImage: '',
+                pageTitle: 'Revenue Management | CORE',
+                metaDescription: "CORE's AI-powered revenue management maximizes your property's yield.",
+                metaKeywords: 'revenue management, dynamic pricing, Dubai, holiday home'
+            },
+            'operations': {
+                title: 'Operations',
+                file: 'operations.html',
+                heroLabel: 'SOLUTIONS',
+                heroHeadline: 'Operations',
+                heroSubtitle: 'End-to-end operations management that ensures your properties are maintained to the highest standards.',
+                heroCta: 'Book a call',
+                heroImage: '',
+                stat1Value: '<2min',
+                stat1Label: 'Average Response Time',
+                stat2Value: '4.9',
+                stat2Label: 'Guest Rating',
+                stat3Value: '99%',
+                stat3Label: 'Satisfaction Rate',
+                ctaLabel: 'GET STARTED',
+                ctaHeadline: 'Ready to streamline your operations?',
+                ctaDescription: "Let us handle the day-to-day while you focus on growing your portfolio.",
+                ctaButton: 'Talk to Our Team',
+                ctaImage: '',
+                pageTitle: 'Operations | CORE',
+                metaDescription: "CORE's end-to-end operations management ensures quality.",
+                metaKeywords: 'operations, property management, housekeeping, Dubai'
+            },
+            'about': {
+                title: 'About',
+                file: 'about.html',
+                heroLabel: 'ABOUT US',
+                heroHeadline: 'WELCOME TO CORE',
+                heroSubtitle: "Running a holiday home business isn't hard because of the guests — it's hard because of everything around them.",
+                heroCta: '',
+                heroImage: 'https://kimi-web-img.moonshot.cn/img/cf.bstatic.com/1147490b45d1707e4edbbe34efea6c4f76ed9352.jpg',
+                section1Title: 'Our Mission',
+                section1Content: "We exist to give holiday home operators an unfair advantage. That means better revenue performance, tighter operations, and guest experiences that earn five-star reviews consistently.",
+                section1Image: '',
+                stat1Value: '200+',
+                stat1Label: 'Properties Managed',
+                stat2Value: '+20%',
+                stat2Label: 'Avg. Revenue Increase',
+                stat3Value: '4.9',
+                stat3Label: 'Guest Rating',
+                ctaLabel: 'Join Us',
+                ctaHeadline: 'Ready to partner with CORE?',
+                ctaDescription: "Let's discuss how we can help you scale your holiday home business.",
+                ctaButton: 'Get in Touch',
+                ctaImage: '',
+                pageTitle: 'About | CORE',
+                metaDescription: "Learn about CORE - the operating partner for holiday home businesses.",
+                metaKeywords: 'about, CORE, holiday home, Dubai, property management'
+            },
+            'pricing': {
+                title: 'Pricing',
+                file: 'pricing.html',
+                heroLabel: 'Pricing',
+                heroHeadline: 'Simple, transparent pricing',
+                heroSubtitle: 'Choose the plan that fits your portfolio. No hidden fees, no surprises.',
+                heroCta: '',
+                heroImage: '',
+                stat1Value: '',
+                stat1Label: '',
+                stat2Value: '',
+                stat2Label: '',
+                stat3Value: '',
+                stat3Label: '',
+                ctaLabel: '',
+                ctaHeadline: 'Still have questions?',
+                ctaDescription: 'Schedule a call with our team to discuss your specific needs.',
+                ctaButton: 'Book a call',
+                ctaImage: '',
+                pageTitle: 'Pricing | CORE',
+                metaDescription: 'Transparent pricing for CORE management services.',
+                metaKeywords: 'pricing, holiday home, Dubai, property management'
+            },
+            'contact': {
+                title: 'Contact',
+                file: 'contact.html',
+                heroLabel: '',
+                heroHeadline: 'Get in Touch',
+                heroSubtitle: "Have questions? We'd love to hear from you.",
+                heroCta: '',
+                heroImage: '',
+                ctaLabel: '',
+                ctaHeadline: '',
+                ctaDescription: '',
+                ctaButton: '',
+                ctaImage: '',
+                pageTitle: 'Contact | CORE',
+                metaDescription: 'Get in touch with CORE.',
+                metaKeywords: 'contact, CORE, Dubai, holiday home'
+            },
+            'book-a-call': {
+                title: 'Book a Call',
+                file: 'book-a-call.html',
+                heroLabel: '',
+                heroHeadline: 'Book a Call',
+                heroSubtitle: 'Schedule a call with our team to learn how CORE can help you grow.',
+                heroCta: '',
+                heroImage: '',
+                ctaLabel: '',
+                ctaHeadline: '',
+                ctaDescription: '',
+                ctaButton: '',
+                ctaImage: '',
+                pageTitle: 'Book a Call | CORE',
+                metaDescription: 'Schedule a call with our team.',
+                metaKeywords: 'book a call, CORE, consultation, Dubai'
+            },
+            'blog': {
+                title: 'Blog',
+                file: 'blog.html',
+                heroLabel: '',
+                heroHeadline: 'Blog',
+                heroSubtitle: 'Insights, tips, and industry news for holiday home operators.',
+                heroCta: '',
+                heroImage: '',
+                ctaLabel: '',
+                ctaHeadline: '',
+                ctaDescription: '',
+                ctaButton: '',
+                ctaImage: '',
+                pageTitle: 'Blog | CORE',
+                metaDescription: 'Insights and tips for holiday home operators.',
+                metaKeywords: 'blog, holiday home, Dubai, tips'
+            }
+        };
+
+        // Tab switching
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => {
+                    t.classList.remove('active');
+                    t.classList.add('text-gray-400');
+                });
+                tab.classList.add('active');
+                tab.classList.remove('text-gray-400');
+                
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                document.getElementById(tab.dataset.tab + '-tab').classList.remove('hidden');
+            });
+        });
+
+        // Load page data
+        function loadPageData() {
+            if (!pageName || !defaultPageData[pageName]) {
+                alert('Page not found');
+                window.location.href = 'pages.html';
+                return;
+            }
+
+            const data = defaultPageData[pageName];
+            document.getElementById('pageTitle').textContent = 'Edit ' + data.title;
+            document.getElementById('pageFile').textContent = data.file;
+            document.getElementById('viewPageLink').href = '../' + data.file;
+
+            // Load saved data if exists
+            const savedPages = JSON.parse(localStorage.getItem('corePages') || '{}');
+            const savedData = savedPages[pageName] || {};
+            const mergedData = { ...data, ...savedData };
+
+            // Populate fields
+            document.getElementById('heroLabel').value = mergedData.heroLabel || '';
+            document.getElementById('heroHeadline').value = mergedData.heroHeadline || '';
+            document.getElementById('heroSubtitle').value = mergedData.heroSubtitle || '';
+            document.getElementById('heroCta').value = mergedData.heroCta || '';
+            document.getElementById('heroImage').value = mergedData.heroImage || '';
+            
+            if (mergedData.heroImage) {
+                document.getElementById('heroImagePreview').classList.remove('hidden');
+                document.getElementById('heroImagePreview').querySelector('img').src = mergedData.heroImage;
+            }
+
+            document.getElementById('section1Title').value = mergedData.section1Title || '';
+            document.getElementById('section1Content').value = mergedData.section1Content || '';
+            document.getElementById('section1Image').value = mergedData.section1Image || '';
+
+            document.getElementById('stat1Value').value = mergedData.stat1Value || '';
+            document.getElementById('stat1Label').value = mergedData.stat1Label || '';
+            document.getElementById('stat2Value').value = mergedData.stat2Value || '';
+            document.getElementById('stat2Label').value = mergedData.stat2Label || '';
+            document.getElementById('stat3Value').value = mergedData.stat3Value || '';
+            document.getElementById('stat3Label').value = mergedData.stat3Label || '';
+
+            document.getElementById('ctaLabel').value = mergedData.ctaLabel || '';
+            document.getElementById('ctaHeadline').value = mergedData.ctaHeadline || '';
+            document.getElementById('ctaDescription').value = mergedData.ctaDescription || '';
+            document.getElementById('ctaButton').value = mergedData.ctaButton || '';
+            document.getElementById('ctaImage').value = mergedData.ctaImage || '';
+
+            document.getElementById('pageTitleInput').value = mergedData.pageTitle || '';
+            document.getElementById('metaDescription').value = mergedData.metaDescription || '';
+            document.getElementById('metaKeywords').value = mergedData.metaKeywords || '';
+        }
+
+        // Image preview
+        document.getElementById('heroImage').addEventListener('input', function() {
+            const url = this.value;
+            if (url) {
+                document.getElementById('heroImagePreview').classList.remove('hidden');
+                document.getElementById('heroImagePreview').querySelector('img').src = url;
+            } else {
+                document.getElementById('heroImagePreview').classList.add('hidden');
+            }
+        });
+
+        // Save page
+        function savePage() {
+            const savedPages = JSON.parse(localStorage.getItem('corePages') || '{}');
+            savedPages[pageName] = {
+                heroLabel: document.getElementById('heroLabel').value,
+                heroHeadline: document.getElementById('heroHeadline').value,
+                heroSubtitle: document.getElementById('heroSubtitle').value,
+                heroCta: document.getElementById('heroCta').value,
+                heroImage: document.getElementById('heroImage').value,
+                section1Title: document.getElementById('section1Title').value,
+                section1Content: document.getElementById('section1Content').value,
+                section1Image: document.getElementById('section1Image').value,
+                stat1Value: document.getElementById('stat1Value').value,
+                stat1Label: document.getElementById('stat1Label').value,
+                stat2Value: document.getElementById('stat2Value').value,
+                stat2Label: document.getElementById('stat2Label').value,
+                stat3Value: document.getElementById('stat3Value').value,
+                stat3Label: document.getElementById('stat3Label').value,
+                ctaLabel: document.getElementById('ctaLabel').value,
+                ctaHeadline: document.getElementById('ctaHeadline').value,
+                ctaDescription: document.getElementById('ctaDescription').value,
+                ctaButton: document.getElementById('ctaButton').value,
+                ctaImage: document.getElementById('ctaImage').value,
+                pageTitle: document.getElementById('pageTitleInput').value,
+                metaDescription: document.getElementById('metaDescription').value,
+                metaKeywords: document.getElementById('metaKeywords').value,
+                lastModified: new Date().toISOString()
+            };
+            localStorage.setItem('corePages', JSON.stringify(savedPages));
+            
+            // Add to activity log
+            const activity = JSON.parse(localStorage.getItem('coreActivity') || '[]');
+            activity.unshift({
+                action: 'Updated ' + defaultPageData[pageName].title,
+                date: new Date().toISOString()
+            });
+            localStorage.setItem('coreActivity', JSON.stringify(activity.slice(0, 10)));
+            
+            alert('Page saved successfully!');
+        }
+
+        function logout() {
+            localStorage.removeItem('adminLoggedIn');
+            localStorage.removeItem('adminEmail');
+            window.location.href = 'login.html';
+        }
+
+        loadPageData();
+    </script>
+</body>
+</html>

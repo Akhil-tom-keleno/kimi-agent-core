@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | CORE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #000000; color: #ffffff; font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-md px-6">
+        <div class="text-center mb-10">
+            <a href="../index.html">
+                <img src="https://kimi-web-img.moonshot.cn/img/upload/C%20(2)%20copy.png" alt="CORE" class="h-12 w-auto brightness-0 invert mx-auto mb-6">
+            </a>
+            <h1 class="text-2xl font-bold text-white mb-2">Admin Login</h1>
+            <p class="text-gray-500">Sign in to manage your website</p>
+        </div>
+
+        <form id="loginForm" class="space-y-6">
+            <div>
+                <label class="block text-sm font-medium text-gray-400 mb-2">Email</label>
+                <input type="email" id="email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors" placeholder="admin@core.com">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-400 mb-2">Password</label>
+                <input type="password" id="password" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors" placeholder="••••••••">
+            </div>
+            <button type="submit" class="w-full bg-white text-black py-4 rounded-xl font-bold hover:bg-gray-200 transition-all duration-300">
+                Sign In
+            </button>
+        </form>
+
+        <p class="text-center mt-6 text-sm text-gray-600">
+            <a href="../index.html" class="hover:text-white transition-colors">← Back to website</a>
+        </p>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Demo credentials - change in production
+            if (email === 'admin@core.com' && password === 'admin123') {
+                localStorage.setItem('adminLoggedIn', 'true');
+                localStorage.setItem('adminEmail', email);
+                window.location.href = 'dashboard.html';
+            } else {
+                alert('Invalid credentials. Try admin@core.com / admin123');
+            }
+        });
+    </script>
+</body>
+</html>
