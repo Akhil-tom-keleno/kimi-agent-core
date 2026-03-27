@@ -13,13 +13,13 @@ That keeps MongoDB and the Node API private to Docker while the browser calls th
 - Use `Ubuntu 22.04 LTS`.
 - Start with `t3.small` or `t3.medium`.
 - Allocate `30-50 GB` gp3 storage.
-- Attach an Elastic IP if you plan to use a domain.
+- Attach an Elastic IP if you want a stable public IP.
 
-Security group:
+Security group for public-IP access:
 
 - Allow `22` only from your IP.
 - Allow `80` from anywhere.
-- Allow `443` from anywhere.
+- Allow `443` only if you later add a domain and SSL.
 - Do not expose `5000` or `27017`.
 
 ## 2. Copy the project to the server
@@ -53,9 +53,10 @@ Update `.env`:
 COMPOSE_PROJECT_NAME=corecms
 APP_BIND_IP=127.0.0.1
 APP_UPSTREAM_PORT=8080
-APP_DOMAIN=your-domain.com
-APP_DOMAIN_ALIASES=www.your-domain.com
-LETSENCRYPT_EMAIL=ops@your-domain.com
+APP_SERVER_NAME=_
+APP_DOMAIN=
+APP_DOMAIN_ALIASES=
+LETSENCRYPT_EMAIL=
 MONGO_ROOT_USERNAME=admin
 MONGO_ROOT_PASSWORD=replace-with-a-long-random-password
 VITE_API_URL=/api
@@ -74,6 +75,7 @@ Notes:
 - `VITE_API_URL=/api` is the correct production setting for this stack.
 - The frontend does not call `localhost`; it calls `/api`, and the container nginx forwards that request to the backend container.
 - Docker Compose injects the production MongoDB connection string automatically.
+- `APP_SERVER_NAME=_` tells host nginx to accept requests by public IP without requiring a domain.
 
 ## 5. Build and start the application
 
@@ -108,18 +110,24 @@ Configure the host nginx reverse proxy:
 
 This installs a site config based on [deploy/nginx/core-cms.conf.example](deploy/nginx/core-cms.conf.example) and proxies the public domain to the client container on `127.0.0.1:8080`.
 
-## 8. Point DNS to the EC2 instance
+For your current setup, access the app as:
 
-- Create an `A` record for your domain to the Elastic IP.
-- Wait for DNS to resolve before issuing certificates.
+`http://<ec2-public-ip>`
 
-## 9. Enable HTTPS
+## 8. Optional: add a domain later
+
+- Set `APP_DOMAIN=your-domain.com`
+- Set `APP_DOMAIN_ALIASES=www.your-domain.com` if needed
+- Set `LETSENCRYPT_EMAIL=ops@your-domain.com`
+- Point DNS `A` records to the Elastic IP
+
+## 9. Optional: enable HTTPS
 
 ```bash
 ./deploy.sh ssl
 ```
 
-That requests Let's Encrypt certificates and updates nginx to redirect HTTP to HTTPS.
+That requests Let's Encrypt certificates and updates nginx to redirect HTTP to HTTPS. This step requires a real domain name and does not work with a raw public IP.
 
 ## 10. Operations
 
@@ -136,7 +144,7 @@ Common commands:
 
 The frontend build now accepts a deployment-time `VITE_API_URL` and the EC2 deployment uses `/api`.
 
-- Public browser request: `https://your-domain.com/api/...`
+- Public browser request: `http://<ec2-public-ip>/api/...` now, or `https://your-domain.com/api/...` later
 - Host nginx forwards to the client container
 - The client container nginx proxies `/api` to `http://server:5000`
 

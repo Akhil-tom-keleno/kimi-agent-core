@@ -166,6 +166,7 @@ This repo is now set up for the common POC layout:
 - the client container is exposed only on `127.0.0.1:8080`
 - the client container nginx proxies `/api` to the backend container
 - the backend and MongoDB stay private inside Docker
+- you can access it immediately by EC2 public IP without a domain
 
 See [EC2_DEPLOYMENT.md](EC2_DEPLOYMENT.md) for the full step-by-step guide.
 
@@ -180,8 +181,9 @@ chmod +x deploy.sh
 ./deploy.sh start
 ./deploy.sh seed
 ./deploy.sh setup-nginx
-./deploy.sh ssl
 ```
+
+If you later add a domain, set `APP_DOMAIN`, `APP_DOMAIN_ALIASES`, and `LETSENCRYPT_EMAIL` in `.env`, then run `./deploy.sh ssl`.
 
 ### Option 3: Manual VPS Deployment
 

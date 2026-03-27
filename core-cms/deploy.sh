@@ -179,14 +179,17 @@ render_nginx_config() {
         exit 1
     fi
 
-    if [ -z "${APP_DOMAIN:-}" ] || [ "${APP_DOMAIN}" = "example.com" ]; then
-        log_error "Set APP_DOMAIN in .env before configuring nginx."
-        exit 1
-    fi
-
     local upstream_port="${APP_UPSTREAM_PORT:-8080}"
     local site_path="/etc/nginx/sites-available/${NGINX_SITE_NAME}"
-    local server_names="${APP_DOMAIN} ${APP_DOMAIN_ALIASES:-}"
+    local server_names="${APP_SERVER_NAME:-}"
+
+    if [ -z "$server_names" ]; then
+        if [ -n "${APP_DOMAIN:-}" ]; then
+            server_names="${APP_DOMAIN} ${APP_DOMAIN_ALIASES:-}"
+        else
+            server_names="_"
+        fi
+    fi
 
     sed \
         -e "s/__SERVER_NAMES__/${server_names}/g" \
@@ -202,19 +205,19 @@ render_nginx_config() {
 setup_nginx() {
     log_info "Configuring host nginx as the public reverse proxy for the containerized app..."
     render_nginx_config
-    log_info "Nginx configured. Point your DNS A record to this EC2 instance before enabling SSL."
+    log_info "Nginx configured. You can now access the app by public IP. Add APP_DOMAIN later if you want DNS and SSL."
 }
 
 enable_ssl() {
     check_env
 
-    if [ -z "${LETSENCRYPT_EMAIL:-}" ] || [ "${LETSENCRYPT_EMAIL}" = "ops@example.com" ]; then
-        log_error "Set LETSENCRYPT_EMAIL in .env before requesting certificates."
+    if [ -z "${APP_DOMAIN:-}" ]; then
+        log_error "APP_DOMAIN is required for SSL. Let's Encrypt cannot issue certificates for a raw public IP."
         exit 1
     fi
 
-    if [ -z "${APP_DOMAIN:-}" ] || [ "${APP_DOMAIN}" = "example.com" ]; then
-        log_error "Set APP_DOMAIN in .env before requesting certificates."
+    if [ -z "${LETSENCRYPT_EMAIL:-}" ]; then
+        log_error "LETSENCRYPT_EMAIL is required for SSL certificate requests."
         exit 1
     fi
 
@@ -264,8 +267,8 @@ Commands:
   logs          Tail application logs
   seed          Seed the database through POST /api/seed
   backup        Create a MongoDB archive backup
-  setup-nginx   Configure host nginx to proxy the public domain to the app
-  ssl           Request and enable Let's Encrypt certificates via nginx
+    setup-nginx   Configure host nginx to proxy the public IP or domain to the app
+    ssl           Request and enable Let's Encrypt certificates via nginx (domain required)
   update        Pull latest code, back up MongoDB, and redeploy
   status        Show container status and resource usage
   help          Show this help message
