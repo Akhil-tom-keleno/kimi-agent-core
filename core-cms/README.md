@@ -158,11 +158,29 @@ git push origin main
 - Add environment variable: `VITE_API_URL=https://your-api-url.com/api`
 - Deploy
 
-### Option 2: Deploy with Docker
+### Option 2: Deploy to a Single EC2 Instance with Docker Compose
 
-1. **Build and run with Docker Compose:**
+This repo is now set up for the common POC layout:
+
+- host nginx handles `80/443`
+- the client container is exposed only on `127.0.0.1:8080`
+- the client container nginx proxies `/api` to the backend container
+- the backend and MongoDB stay private inside Docker
+
+See [EC2_DEPLOYMENT.md](EC2_DEPLOYMENT.md) for the full step-by-step guide.
+
+Quick path:
+
 ```bash
-docker-compose up -d
+cp .env.example .env
+cp server/.env.example server/.env
+chmod +x deploy.sh
+./deploy.sh setup
+./deploy.sh build
+./deploy.sh start
+./deploy.sh seed
+./deploy.sh setup-nginx
+./deploy.sh ssl
 ```
 
 ### Option 3: Manual VPS Deployment
