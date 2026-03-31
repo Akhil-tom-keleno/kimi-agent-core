@@ -33,6 +33,14 @@ load_root_env() {
     fi
 }
 
+load_server_env() {
+    if [ -f server/.env ]; then
+        set -a
+        . ./server/.env
+        set +a
+    fi
+}
+
 require_file() {
     local target="$1"
     local example="$2"
@@ -58,6 +66,7 @@ check_env() {
     fi
 
     load_root_env
+    load_server_env
 }
 
 ensure_backup_dir() {
@@ -160,12 +169,17 @@ backup() {
     ensure_docker_compose
     ensure_backup_dir
 
+    if [ -z "${MONGODB_URI:-}" ]; then
+        log_error "MONGODB_URI is not set in server/.env. Atlas backup cannot run."
+        exit 1
+    fi
+
     local timestamp
     timestamp=$(date +%Y%m%d_%H%M%S)
     local backup_file="${BACKUP_DIR}/core-cms_${timestamp}.archive.gz"
 
-    log_info "Creating MongoDB backup at ${backup_file}..."
-    $DOCKER_COMPOSE -f "$COMPOSE_FILE" exec -T mongodb sh -lc 'mongodump --archive --gzip --username "$MONGO_INITDB_ROOT_USERNAME" --password "$MONGO_INITDB_ROOT_PASSWORD" --authenticationDatabase admin --db core-cms' > "$backup_file"
+    log_info "Creating MongoDB Atlas backup at ${backup_file}..."
+    docker run --rm mongo:6 sh -lc "mongodump --uri '$MONGODB_URI' --archive --gzip" > "$backup_file"
 
     ls -t "${BACKUP_DIR}"/core-cms_*.archive.gz 2>/dev/null | tail -n +8 | xargs -r rm -f
     log_info "Backup complete. Kept the latest 7 archives."
@@ -252,6 +266,49 @@ status() {
     docker stats --no-stream $($DOCKER_COMPOSE -f "$COMPOSE_FILE" ps -q) 2>/dev/null || true
 }
 
+diagnose() {
+    check_env
+    ensure_docker_compose
+
+    local upstream_port="${APP_UPSTREAM_PORT:-8080}"
+    local site_path="/etc/nginx/sites-available/${NGINX_SITE_NAME}"
+
+    log_info "Container status"
+    $DOCKER_COMPOSE -f "$COMPOSE_FILE" ps || true
+    echo
+
+    log_info "Host nginx status"
+    sudo systemctl status nginx --no-pager -l || true
+    echo
+
+    log_info "Host nginx config test"
+    sudo nginx -t || true
+    echo
+
+    log_info "Listening ports for 80 and ${upstream_port}"
+    sudo ss -tulpn | grep -E ":80|:${upstream_port}" || true
+    echo
+
+    log_info "Rendered host nginx site config"
+    if [ -f "$site_path" ]; then
+        sudo cat "$site_path"
+    else
+        log_warn "${site_path} does not exist. Run ./deploy.sh setup-nginx"
+    fi
+    echo
+
+    log_info "Curl test to containerized frontend upstream"
+    curl -I --max-time 10 "http://127.0.0.1:${upstream_port}" || true
+    echo
+
+    log_info "Curl test to host nginx on port 80"
+    curl -I --max-time 10 http://127.0.0.1 || true
+    echo
+
+    log_info "Recent host nginx error log"
+    sudo tail -n 50 /var/log/nginx/error.log || true
+}
+
 help() {
     cat <<'EOF'
 CORE CMS Deployment Script
@@ -271,6 +328,7 @@ Commands:
     ssl           Request and enable Let's Encrypt certificates via nginx (domain required)
   update        Pull latest code, back up MongoDB, and redeploy
   status        Show container status and resource usage
+    diagnose      Check host nginx, listening ports, and local HTTP reachability
   help          Show this help message
 EOF
 }
@@ -311,6 +369,9 @@ case "${1:-help}" in
         ;;
     status)
         status
+        ;;
+    diagnose)
+        diagnose
         ;;
     help|*)
         help

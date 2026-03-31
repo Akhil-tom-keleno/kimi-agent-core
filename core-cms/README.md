@@ -165,7 +165,7 @@ This repo is now set up for the common POC layout:
 - host nginx handles `80/443`
 - the client container is exposed only on `127.0.0.1:8080`
 - the client container nginx proxies `/api` to the backend container
-- the backend and MongoDB stay private inside Docker
+- the backend runs in Docker and connects to MongoDB Atlas
 - you can access it immediately by EC2 public IP without a domain
 
 See [EC2_DEPLOYMENT.md](EC2_DEPLOYMENT.md) for the full step-by-step guide.

@@ -4,9 +4,9 @@ This project is set up to run on a single EC2 instance with Docker Compose.
 
 Traffic flow:
 
-`browser -> host nginx (80/443) -> client container nginx (127.0.0.1:8080 on host) -> /api proxy -> server container -> mongodb container`
+`browser -> host nginx (80/443) -> client container nginx (127.0.0.1:8080 on host) -> /api proxy -> server container -> MongoDB Atlas`
 
-That keeps MongoDB and the Node API private to Docker while the browser calls the API with the same-origin path `/api`.
+That keeps the Node API private to Docker while the browser calls the API with the same-origin path `/api`.
 
 ## 1. Launch the EC2 instance
 
@@ -20,7 +20,7 @@ Security group for public-IP access:
 - Allow `22` only from your IP.
 - Allow `80` from anywhere.
 - Allow `443` only if you later add a domain and SSL.
-- Do not expose `5000` or `27017`.
+- Do not expose `5000`.
 
 ## 2. Copy the project to the server
 
@@ -57,8 +57,6 @@ APP_SERVER_NAME=_
 APP_DOMAIN=
 APP_DOMAIN_ALIASES=
 LETSENCRYPT_EMAIL=
-MONGO_ROOT_USERNAME=admin
-MONGO_ROOT_PASSWORD=replace-with-a-long-random-password
 VITE_API_URL=/api
 ```
 
@@ -67,6 +65,7 @@ Update `server/.env`:
 ```env
 PORT=5000
 NODE_ENV=production
+MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/core-cms?retryWrites=true&w=majority
 JWT_SECRET=replace-with-a-long-random-jwt-secret
 ```
 
@@ -74,7 +73,7 @@ Notes:
 
 - `VITE_API_URL=/api` is the correct production setting for this stack.
 - The frontend does not call `localhost`; it calls `/api`, and the container nginx forwards that request to the backend container.
-- Docker Compose injects the production MongoDB connection string automatically.
+- The Atlas connection is read from `server/.env` via `MONGODB_URI`.
 - `APP_SERVER_NAME=_` tells host nginx to accept requests by public IP without requiring a domain.
 
 ## 5. Build and start the application
