@@ -138,7 +138,33 @@ Common commands:
 ./deploy.sh backup
 ./deploy.sh restart
 ./deploy.sh update
+./deploy.sh diagnose
 ```
+
+## 11. If the public IP does not open
+
+The most common causes are host-level, not container-level.
+
+Run:
+
+```bash
+./deploy.sh diagnose
+```
+
+Check these specifically:
+
+- The EC2 security group allows inbound `80`.
+- `./deploy.sh setup-nginx` completed successfully.
+- Host nginx is running.
+- `curl -I http://127.0.0.1:8080` works on the EC2 host.
+- `curl -I http://127.0.0.1` works on the EC2 host.
+
+If `127.0.0.1:8080` works but the public IP does not, the problem is almost certainly one of these:
+
+- nginx was not configured or not running
+- security group inbound `80` is blocked
+- the instance has no public IP or Elastic IP attached
+- a network ACL or host firewall is blocking port `80`
 
 ## Why the API URL is `/api`
 

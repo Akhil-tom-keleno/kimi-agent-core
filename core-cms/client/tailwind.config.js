@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        core: {
+        corex: {
           black: '#000000',
           dark: '#0a0a0a',
           darker: '#050505',
